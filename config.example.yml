@@ -1,0 +1,19 @@
+tasks:
+  - label: Backup
+    silent_run: false
+    interval:
+      type: cron
+      value: 0 * * * *
+      start_at_zero: true
+    execute:
+      type: process
+      process: backup.sh
+      args: "--verbose"
+      env:
+        PORT: 3000
+    logs:
+      enable: true
+      out_file: out.log
+      error_file: error.log
+      combine_logs: false
+log_file: jobs.log
